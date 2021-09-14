@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,17 @@
     <link rel="stylesheet" href="./styles/style.css">
     <title>Pokedéx</title>
 </head>
+
 <body>
-    <script type="module" src="./scripts/script.js"></script>    
+    <label for="pokemon">Escolha seu pokemon:</label>
+    <select name="pokemon" id="pokemon"></select>
+    <input type="button" value="Enviar" id="search-pokemon">
+
+    <div class="pokemon-result"></div>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
 </body>
+
 </html>
