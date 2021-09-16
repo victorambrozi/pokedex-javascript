@@ -1,5 +1,6 @@
 export default function exibirPokemon() {
-    const pokeAPI = (url) => axios.get(`https://pokeapi.co/api/v2/${url}`);
+    try {
+        const pokeAPI = (url) => axios.get(`https://pokeapi.co/api/v2/${url}`);
     const btnPokemon = document.getElementById('search-pokemon');
 
     btnPokemon.addEventListener('click', (event) => {
@@ -18,5 +19,11 @@ export default function exibirPokemon() {
                 
                 console.log(evolutions[0].evolves_to[0])
             })
+            // adicionar catch
+            
     })
+    } catch (error) {
+        console.error(error);
+    }
+    
 }
