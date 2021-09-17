@@ -1,32 +1,56 @@
 export default function exibirPokemon() {
     try {
-        const pokeAPI = (url) => axios.get(`https://pokeapi.co/api/v2/${url}`);
-    const btnPokemon = document.getElementById('search-pokemon');
+        const fetchAPI = (url) => fetch(`https://pokeapi.co/api/v2/${url}`);
+        const btnPokemon = document.getElementById('search-pokemon');
 
-    btnPokemon.addEventListener('click', (event) => {
-        const selectValue = document.getElementById('pokemon').value;
+        btnPokemon.addEventListener('click', () => {
+            const selectValue = document.getElementById('pokemon').value;
 
-        pokeAPI(`pokemon/${selectValue}`)
-            .then(response => {
-                console.log(response.data.id)
-                return response.data.id;
-            })
-            .then(id => pokeAPI(`evolution-chain/${id}/`))
-            .then(response => response.data.chain.species)
-            .then(evolutions => {
-                // const evolution2 = evolutions[0].species;
-                // document.querySelector('.pokemon-result').innerHTML = evolution2;
-                console.log(evolutions)
-                
-                // console.log(evolution2)
-                // console.log(evolutions[0].evolves_to[0])
-            })
-            // adicionar catch
-            
-            // ------------------------     POR QUE ELE TA BUSCANDO UM ID DIFERENTE DA SUA EVOLUÇÃO??????????????????????????????????????  -----------------------------------------
-    })
-    } catch (error) {
-        console.error(error);
+            fetchAPI(`pokemon/${selectValue}`)
+                .then(response => response.json())
+                .then((dataPokemon) => {
+                    const {
+                        name,
+                        height,
+                        id,
+                        weight,
+                        types,
+                        sprites: {
+                            front_default: avatar
+                        }
+                    } = dataPokemon;
+
+                    const pokemonProperties = { 
+                        type: types[0].type.name,
+                        name,
+                        height,
+                        weight,
+                        avatar
+                    }
+
+                    return insertElement(pokemonProperties);
+
+                })
+                .catch(err => { throw new Error(err) })
+
+        })
+    } catch (err) {
+        console.error(err);
     }
-    
+
+    function insertElement({ name, height, weight, type, avatar }) {
+        const cardContentElement = document.querySelector(".card-content");
+        const cardAvatarElement = document.querySelector(".card-avatar img");
+
+        cardAvatarElement.src = `${avatar}`
+
+        cardContentElement.innerHTML =
+            `
+                <h2 class="pokemon-name"> ${name}</h2>
+                <p>${height}m</p>
+                <p>${weight}kg</p>            
+                <p>${type}</p>            
+            `
+
+    }
 }

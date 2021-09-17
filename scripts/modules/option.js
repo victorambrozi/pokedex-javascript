@@ -1,16 +1,17 @@
 export default function preencherOptions() {
     try {
-        const pokeAPI = (url) => axios.get(`https://pokeapi.co/api/v2/${url}`);
-        pokeAPI('pokemon/')
-            .then(response => response.data.results)
+        const fetchAPI = (url) => fetch(`https://pokeapi.co/api/v2/${url}`);
+        fetchAPI('pokemon/')
+            .then(response => response.json())
+            .then(pokeAPI => pokeAPI.results)
             .then(resultsAPI => {
                 // preenche as options do select
-                resultsAPI.forEach(pokemon => {
-                    $('#pokemon').append(`<option value=${pokemon.name}>${pokemon.name.toUpperCase()}</option>`)
+                resultsAPI.forEach(({ name }) => {
+                    $('#pokemon').append(`<option value=${name}>${name.toUpperCase()}</option>`)
                 })
             })
-            .catch(err => new Error(err))
-    } catch (error) {
-        console.error(error);
+            .catch(err => console.error(err))
+    } catch (err) {
+        throw new Error((err));
     }
 }
