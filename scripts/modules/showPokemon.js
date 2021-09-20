@@ -8,7 +8,7 @@ export default function exibirPokemon() {
     }
 
     function captureApiData() {
-        const fetchAPI = (url) => fetch(`https://pokeapi.co/api/v2/${url}`);
+        const fetchAPI = url => fetch(`https://pokeapi.co/api/v2/${url}`);
         const selectValue = document.getElementById('pokemon').value;
 
         fetchAPI(`pokemon/${selectValue}`)
