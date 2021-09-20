@@ -38,8 +38,11 @@ export default function exibirPokemon() {
     }
 
     function insertElement({ name, height, weight, type, avatar }) {
-        const cardContentElement = document.querySelector(".card-content");
-        const cardAvatarElement = document.querySelector(".card-avatar");
+        const cardContentElement = document.querySelector('[data-pokemon="content"]');
+        const cardAvatarElement = document.querySelector('[data-pokemon="avatar"]');
+        const responseResult = document.querySelector('[data-pokemon="result"]')
+
+        responseResult.classList.add("active");
 
         cardAvatarElement.innerHTML = `<img src="${avatar}" alt="Avatar">`;
         cardContentElement.innerHTML =
