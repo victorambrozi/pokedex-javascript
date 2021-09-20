@@ -48,9 +48,9 @@ export default function exibirPokemon() {
         cardContentElement.innerHTML =
             `
                 <h2 class="pokemon-name"> ${name}</h2>
-                <p>Altura: ${height}m</p>
-                <p>Peso: ${weight}kg</p>            
-                <p>Tipo: ${type}</p>            
+                <p><strong>Altura</strong>: ${height}m</p>
+                <p><strong>Peso</strong>: ${weight}kg</p>            
+                <p><strong>Tipo</strong>: ${type}</p>            
             `;
     }
 }
