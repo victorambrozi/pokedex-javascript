@@ -50,6 +50,10 @@ img {
     cursor: pointer;
 }
 
+.pokemon-search select option {
+    background: #333;
+}
+
 .pokemon-search input[type="button"] {
     margin-left: 1.2rem;
     padding: 0.7rem 2rem;
