@@ -5,22 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
     <link rel="stylesheet" href="./styles/style.css">
+
     <title>Pokedéx</title>
 </head>
 
 <body>
-    <label for="pokemon">Escolha seu pokemon:</label>
-    <select name="pokemon" id="pokemon"></select>
-    <input type="button" value="Enviar" id="search-pokemon">
+    <main class="content">
+        <div class="pokemon-search">
+            <div class="logo">
+                <img src="./assets/pokemon-logo.svg" alt="Logo">
+            </div>
 
-    <div class="pokemon-result">
-        <div class="pokemon-card">
-            <div class="card-avatar"></div>
-            <div class="card-content"></div>
+            <label for="pokemon">Busque seu pokemon</label>
+            <select name="pokemon" id="pokemon"></select>
+            <input type="button" value="Enviar" id="search-pokemon">
         </div>
-    </div>
 
+        <div class="pokemon-result">
+            <div class="pokemon-card">
+                <div class="card-avatar"></div>
+                <div class="card-content"></div>
+            </div>
+        </div>
+    </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="module" src="./scripts/script.js"></script>
 </body>
