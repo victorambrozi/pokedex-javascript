@@ -1,11 +1,7 @@
 export default function exibirPokemon() {
-    try {
-        const btnPokemon = document.getElementById('search-pokemon');
+    const btnPokemon = document.getElementById('search-pokemon');
 
-        btnPokemon.addEventListener('click', captureApiData);
-    } catch (err) {
-        console.error(err);
-    }
+    btnPokemon.addEventListener('click', captureApiData);
 
     async function captureApiData() {
         const fetchAPI = url => fetch(`https://pokeapi.co/api/v2/${url}`);
