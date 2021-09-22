@@ -7,34 +7,34 @@ export default function exibirPokemon() {
         console.error(err);
     }
 
-    function captureApiData() {
+    async function captureApiData() {
         const fetchAPI = url => fetch(`https://pokeapi.co/api/v2/${url}`);
         const selectValue = document.getElementById('pokemon').value;
+        try {
+            const response = await fetchAPI(`pokemon/${selectValue}`);
+            const pokemonJSON = await response.json();
+            const {
+                name,
+                height,
+                weight,
+                types,
+                sprites: {
+                    front_default: avatar
+                }
+            } = pokemonJSON;
 
-        fetchAPI(`pokemon/${selectValue}`)
-            .then(response => response.json())
-            .then((dataPokemon) => {
-                const {
-                    name,
-                    height,
-                    weight,
-                    types,
-                    sprites: {
-                        front_default: avatar
-                    }
-                } = dataPokemon;
+            const pokemonProperties = {
+                type: types[0].type.name,
+                name,
+                height,
+                weight,
+                avatar
+            };
 
-                const pokemonProperties = {
-                    type: types[0].type.name,
-                    name,
-                    height,
-                    weight,
-                    avatar
-                };
-                return pokemonProperties;
-            })
-            .then(properties => insertElement(properties))
-            .catch(err => { throw new Error(err) })
+            insertElement(pokemonProperties);
+        } catch (err) {
+            throw new Error(err)
+        }
     }
 
     function insertElement({ name, height, weight, type, avatar }) {
