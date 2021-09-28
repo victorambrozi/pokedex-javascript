@@ -4,10 +4,11 @@ export default function exibirPokemon() {
     btnPokemon.addEventListener('click', captureApiData);
 
     async function captureApiData() {
-        const fetchAPI = url => fetch(`https://pokeapi.co/api/v2/${url}`);
+        const fetchAPI = (url) => fetch(`https://pokeapi.co/api/v2/${url}`);
         const selectValue = document.getElementById('pokemon').value;
+        
         try {
-            const response = await fetchAPI(`pokemon/${selectValue}`);
+            const response = await fetchAPI(`pokemon/${selectValue}`)
             const pokemonJSON = await response.json();
             const {
                 name,
@@ -26,10 +27,9 @@ export default function exibirPokemon() {
                 weight,
                 avatar
             };
-
-            insertElement(pokemonProperties);
+            insertElement(pokemonProperties)
         } catch (err) {
-            throw new Error(err)
+            console.error(err);
         }
     }
 
